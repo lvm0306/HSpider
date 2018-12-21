@@ -64,8 +64,23 @@ agents = [
     "Mozilla/5.0 (Linux; U; Android 1.6; es-es; SonyEricssonX10i Build/R1FA016) AppleWebKit/528.5  (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1",
     "Mozilla/5.0 (Linux; U; Android 1.6; en-us; SonyEricssonX10i Build/R1AA056) AppleWebKit/528.5  (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1",
 ]
+
+
 def argent():
-    return agents[int(random.random()*len(agents))]
+    return agents[int(random.random() * len(agents))]
+
 
 def getHeaders():
-    return {'User-Agent':argent()}
+    return {'User-Agent': argent()}
+
+
+def getHeadersWithReferer(referer):
+    return {'User-Agent': argent(), "Referer": referer}
+
+
+def getHeadersWithProxy(referer):
+    return {'User-Agent': argent(), "Referer": referer}
+
+
+def getHeadersWithRefererMZT():
+    return {'User-Agent': argent(), "Referer": "https://www.mzitu.com/"}

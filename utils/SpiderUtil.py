@@ -5,7 +5,7 @@ import time
 
 import chardet
 
-from utils.UserAgentSeed import getHeaders
+from utils.UserAgentSeed import *
 from utils.GetEncoding import GetEncoding
 
 ua_headers = {
@@ -19,5 +19,25 @@ class SpiderHtml():
 
     def getHtml(self):
         respone = requests.get(url=self.url, headers=getHeaders())
+        respone.encoding = GetEncoding(self.url).get_encode1()
+        return respone.text
+
+    def getHtmlWithReferer(self,referer):
+        respone = requests.get(url=self.url, headers=getHeadersWithReferer(referer))
+        respone.encoding = GetEncoding(self.url).get_encode1()
+        return respone.text
+
+    def getHtmlWithProxy(self,proxy):
+        respone = requests.get(url=self.url, headers=getHeadersWithReferer(referer))
+        respone.encoding = GetEncoding(self.url).get_encode1()
+        return respone.text
+
+    def getHtmlWithRefererAndProxy(self,referer,proxy):
+        respone = requests.get(url=self.url, headers=getHeadersWithReferer(referer))
+        respone.encoding = GetEncoding(self.url).get_encode1()
+        return respone.text
+
+    def getHtmlWithRefererMZT(self):
+        respone = requests.get(url=self.url, headers=getHeadersWithRefererMZT())
         respone.encoding = GetEncoding(self.url).get_encode1()
         return respone.text
