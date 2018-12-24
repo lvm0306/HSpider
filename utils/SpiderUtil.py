@@ -28,7 +28,7 @@ class SpiderHtml():
         return respone.text
 
     def getHtmlWithProxy(self,proxy):
-        respone = requests.get(url=self.url, headers=getHeadersWithReferer(referer))
+        respone = requests.get(url=self.url, headers=getHeadersWithReferer(proxy))
         respone.encoding = GetEncoding(self.url).get_encode1()
         return respone.text
 

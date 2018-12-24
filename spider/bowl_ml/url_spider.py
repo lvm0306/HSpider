@@ -2,7 +2,7 @@ import requests
 from utils.SpiderUtil import SpiderHtml
 from bs4 import BeautifulSoup as bs
 import csv
-base = 'http://bowl.ml/'
+base = 'http://fine.gq/'
 html = SpiderHtml(base).getHtml()
 soup = bs(html, 'html.parser')
 items = soup.find_all(class_='item item-0')

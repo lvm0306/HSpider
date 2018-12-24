@@ -12,5 +12,5 @@ radio_pathurl = 'mp3.mp3'
 # dfwp.load()
 # DownloadBinaryFileWithProgressBar(aim_url=imageurl,save_url=image_pathurl).load()
 # DownloadBinaryFile(aim_url='https://i.meizitu.net/2018/11/21c31.jpg',save_url='F:\space\\torrent\meizitu\甜美御姐五官精致 丰满好身材衣服都要绷不住了'+'\\1.jpg').load()
-DownloadBinaryFileWithProgressBar(aim_url='https://one.991video.com/common/duanshipin/2018-11-26/a4584b232bb0376c85be0bd95b9f448f_wm.mp4',save_url='1.mp4').load()
+DownloadBinaryFileWithProgressBar(aim_url='http://www.yzz222.com/get_file/8/fcae0282da7a73b556b5b4c6455e21ef100458cdd3/33000/33478/33478.mp4/',save_url='1.mp4').load()
 # req.urlretrieve('https://i.meizitu.net/2018/11/21c01.jpg','1.jpg')
