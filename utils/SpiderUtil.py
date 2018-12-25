@@ -37,7 +37,3 @@ class SpiderHtml():
         respone.encoding = GetEncoding(self.url).get_encode1()
         return respone.text
 
-    def getHtmlWithRefererMZT(self):
-        respone = requests.get(url=self.url, headers=getHeadersWithRefererMZT())
-        respone.encoding = GetEncoding(self.url).get_encode1()
-        return respone.text

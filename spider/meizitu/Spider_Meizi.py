@@ -8,9 +8,10 @@ from urllib import request as req
 base = 'https://www.mzitu.com/all'
 folder = "F:\space\\torrent\\meizitu"
 
+base = 'https://www.mzitu.com'
 
 def runSpider(url):
-    html = SpiderHtml(url).getHtmlWithRefererMZT()
+    html = SpiderHtml(url).getHtmlWithReferer(base)
     p_s = bs(html, 'html.parser').find_all('ul', class_='archives')
     for i in p_s:
         a_s = i.find_all('a')
@@ -22,11 +23,11 @@ def runSpider(url):
 
 
 def getImageUrl(url, name):
-    html = SpiderHtml(url).getHtmlWithRefererMZT()
+    html = SpiderHtml(url).getHtmlWithReferer(base)
     soup = bs(html, 'html.parser')
     page = int(soup.find(class_='pagenavi').find_all('a')[-2].span.text)  # 获取页码
     for i in range(page):
-        html = SpiderHtml(url + '/' + str(i)).getHtmlWithRefererMZT()
+        html = SpiderHtml(url + '/' + str(i)).getHtmlWithReferer(base)
         image_link = bs(html, 'html.parser').find('div', class_='main-image').p.a.img['src']
         print(name)
         print(image_link)
