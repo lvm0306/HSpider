@@ -77,10 +77,3 @@ def getHeaders():
 def getHeadersWithReferer(referer):
     return {'User-Agent': argent(), "Referer": referer}
 
-
-def getHeadersWithProxy(referer):
-    return {'User-Agent': argent(), "Referer": referer}
-
-
-def getHeadersWithRefererMZT():
-    return {'User-Agent': argent(), "Referer": "https://www.mzitu.com/"}
