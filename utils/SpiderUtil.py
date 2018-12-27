@@ -12,8 +12,10 @@ ua_headers = {
 # proxies = {
 #     "http": "http://121.232.148.82:9000",
 # }
-proxies = {'https': "socks5h://127.0.0.1:1080"}
-
+proxies = {
+    "http": "socks5://127.0.0.1:1080",
+    'https': 'socks5://127.0.0.1:1080'
+}
 
 class SpiderHtml():
     def __init__(self, url):
@@ -22,17 +24,17 @@ class SpiderHtml():
 
     def getHtml(self):
         respone = requests.get(url=self.url, headers=getHeaders())
-        respone.encoding = GetEncoding(self.url).get_encode1()
+        respone.encoding = GetEncoding(self.url).get_encode2()
         return respone.text
 
     def getHtmlWithReferer(self, referer):
         respone = requests.get(url=self.url, headers=getHeadersWithReferer(referer))
-        respone.encoding = GetEncoding(self.url).get_encode1()
+        respone.encoding = GetEncoding(self.url).get_encode2()
         return respone.text
 
     def getHtmlWithRefererAndProxy(self, referer):
-        respone = requests.get(url=self.url, headers=getHeadersWithReferer(referer),verify=False)
-        respone.encoding = GetEncoding(self.url).get_encode1()
+        respone = requests.get(url=self.url, headers=getHeadersWithReferer(referer),proxies=proxies)
+        respone.encoding = GetEncoding(self.url).get_encode2()
         return respone.text
 
     def getBeautifulSoup(self, referer):
