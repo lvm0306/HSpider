@@ -1,11 +1,11 @@
-from utils.DownloadUtils import DownloadBinaryFile
+from utils.DownloadUtils import DownloadBinaryFile, DownloadBinaryFileWithReferer
 from utils.SpiderUtil import SpiderHtml
 from bs4 import BeautifulSoup as bs
 import requests
 import os
 
 from urllib import request as req
-base = 'https://www.mzitu.com/all'
+# base = 'https://www.mzitu.com/all'
 folder = "F:\space\\torrent\\meizitu"
 
 base = 'https://www.mzitu.com'
@@ -34,7 +34,9 @@ def getImageUrl(url, name):
         #判断地址是否存在
         if not (os.path.exists(folder+'\\'+name)):
             os.makedirs(folder+'\\'+name)
-        DownloadBinaryFile(aim_url=image_link,save_url=folder+'\\'+name+'\\'+str(i)+'.jpg').load()
+        DownloadBinaryFileWithReferer(aim_url=image_link,
+                                      save_url=folder+'\\'+name+'\\'+str(i)+'.jpg',
+                                      referer=base).load()
         # req.urlretrieve(image_link,folder+'\\'+name+'\\'+str(i)+'.jpg')
     # link = soup.find('figure').find('img')['src']
     # print(link)

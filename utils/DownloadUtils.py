@@ -12,7 +12,7 @@ import requests
 from contextlib import closing
 
 # user-agent 随机种子
-from utils.UserAgentSeed import argent, getHeaders
+from utils.UserAgentSeed import argent, getHeaders,getHeadersWithReferer
 
 
 class DownloadBinaryFile():
@@ -29,6 +29,20 @@ class DownloadBinaryFile():
         except Exception as e:
             print('图片下载出现错误   ' + str(e))
 
+class DownloadBinaryFileWithReferer():
+
+    def __init__(self, aim_url, save_url,referer):
+        self.aim_url = aim_url
+        self.save_url = save_url
+        self.referer = referer
+
+    def load(self):
+        try:
+            response = requests.get(self.aim_url + '', headers=getHeadersWithReferer(self.referer))
+            with open(self.save_url, 'wb') as f:
+                f.write(response.content)
+        except Exception as e:
+            print('图片下载出现错误   ' + str(e))
 
 class DownloadBinaryFileWithProgressBar():
 

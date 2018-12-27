@@ -9,9 +9,10 @@ ua_headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0',
 }
 # 需要修改
-proxies = {
-    "http": "http://121.232.148.82:9000",
-}
+# proxies = {
+#     "http": "http://121.232.148.82:9000",
+# }
+proxies = {'https': "socks5h://127.0.0.1:1080"}
 
 
 class SpiderHtml():
@@ -30,12 +31,15 @@ class SpiderHtml():
         return respone.text
 
     def getHtmlWithRefererAndProxy(self, referer):
-        respone = requests.get(url=self.url, headers=getHeadersWithReferer(referer), proxies=proxies)
+        respone = requests.get(url=self.url, headers=getHeadersWithReferer(referer),verify=False)
         respone.encoding = GetEncoding(self.url).get_encode1()
         return respone.text
 
     def getBeautifulSoup(self, referer):
         return bs(self.getHtmlWithReferer(referer), 'html.parser')
+
+    def getBeautifulSoupProxy(self, referer):
+        return bs(self.getHtmlWithRefererAndProxy(referer), 'html.parser')
 
     def driverUrl(self, url):
         if self.driver is None:
