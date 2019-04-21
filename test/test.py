@@ -1,21 +1,36 @@
 import csv
 
-from utils.SpiderUtil import SpiderHtml
+# from utils.SpiderUtil import SpiderHtml
+# from bs4 import BeautifulSoup
+# import requests
+#
+# url='https://www.ecook.cn/caipu/262972127'
+# base='https://www.ecook.cn/'
+# requests.get(url)
+# text=SpiderHtml(url=url).getHtml2()
+# bs=BeautifulSoup(text, 'html.parser')
+#
+#
+# print('食物名')
+# main=bs.find('div',class_='main_img')
+# print(main.img['alt'])
+# print(main.img['src'])
+#
+# print('所需食材')
+# uls=bs.find_all('ul',class_='material_subul')
+# for i in uls:
+#     print(i.text)
+#
+# print('制作步骤')
+# divs=bs.find_all('div',class_='step_one')
+# for i in divs:
+#     print(i.find('div','step_text').text)
+#     print(i.find('div',class_='img').img['src'])
 
-url='http://www.mmjpg.com/more/'
-base='http://www.mmjpg.com/'
-soup=SpiderHtml(url=url).getBeautifulSoup(base)
-tags=soup.find(id='morelist').find_all('li')
-print(len(tags))
-with open("mmjpg_tags.csv", "a+", encoding="utf-8") as f:
-    writer = csv.writer(f)
-    for i in tags:
-        print(i)
-        list = []
-        list.append(i.a['href'])#link
-        list.append(i.a.img['src'])#img
-        list.append(i.a.img['data-img'])#img
-        list.append(i.find('i').text)#num
-        list.append(i.a.text)#name
-        writer.writerow(list)
 
+url='https://www.ecook.cn/caipu/262972127'
+base='https://www.ecook.cn/'
+from utils.SpiderHelper import SpiderHelper
+sh=SpiderHelper(base).init2()
+html=sh.getHtml(url)
+print(html)

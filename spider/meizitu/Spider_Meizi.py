@@ -6,10 +6,10 @@ import os
 
 from urllib import request as req
 # base = 'https://www.mzitu.com/all'
-folder = "F:\space\\torrent\\meizitu"
+folder = "E:\\space\\python_space\\HSpider_resource\\meizitu"
 
 base = 'https://www.mzitu.com'
-
+# https://www.mzitu.com 妹子图的爬虫
 def runSpider(url):
     html = SpiderHtml(url).getHtmlWithReferer(base)
     p_s = bs(html, 'html.parser').find_all('ul', class_='archives')

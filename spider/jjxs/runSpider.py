@@ -10,7 +10,7 @@ baseurl = "https://www.jjxs.la/"
 csv_cate = 'cate.csv'
 csv_cate2 = 'cate2.csv'
 txt_list = 'txt_list.csv'
-
+# https://www.jjxs.la/ 久久小说网的爬虫
 def run():
     # 获取类别写入csv
     # getCate()

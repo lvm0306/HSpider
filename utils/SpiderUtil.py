@@ -61,3 +61,8 @@ class SpiderHtml():
         if self.driver is None:
             raise Exception("driver is not init")
         return self.driver
+
+    def getHtml2(self):
+        respone = requests.get(url=self.url, headers=getHeaders())
+        respone.encoding = GetEncoding(self.url).get_encode1()
+        return respone.text
