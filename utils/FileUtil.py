@@ -25,4 +25,6 @@ class CsvUtil():
         return self.csv_write
 
     def read(self):
-        return csv.reader(open(self.filename, self.cate))
+        if self.file is None:
+            self.file = open(self.filename, self.cate, newline='')
+        return csv.reader(self.file)
