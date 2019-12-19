@@ -22,5 +22,6 @@ txt_url='https://www.jjxs.la/e/DownSys/doaction.php?enews=DownSoft&classid=47&id
 #
 # with open('1.txt','wb') as f :
 #     f.write(respone.content)
-
+# req.urlretrieve('https://i.meizitu.net/2018/11/21c01.jpg','1.jpg')
+DownloadBinaryFileWithProgressBar(aim_url=imageurl,save_url='1.jpg').load()
 DownloadBinaryFile(aim_url=txt_url,save_url='2.txt').load()
