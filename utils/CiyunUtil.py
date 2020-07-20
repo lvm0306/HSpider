@@ -27,11 +27,12 @@ class CiyunHelper():
         wordcloud = WordCloud(background_color="white",
                               width=self.width,
                               height=self.height,
-                              font_path='/Users/lovesosoi/Documents/font_style/syst.otf',  # 字体设置 不写中文乱码
-                              margin=2,  # 边距
+                              font_path='D:\\space\\py_space\\spider\\spider\\qishus\\y245.ttf',  # 字体设置 不写中文乱码
+                              margin=4,  # 边距
                               max_font_size=self.fontsize,  # 设置字体最大值
-                              random_state=30,  # 设置有多少种随机生成状态，即有多少种配色方案
-                              scale=.5
+                              random_state=160,  # 设置有多少种随机生成状态，即有多少种配色方案
+                              scale=.5,
+                              max_words=300
                               ).generate(text_after)
         wordcloud.to_file(self.imageurl)
 
@@ -40,7 +41,7 @@ class CiyunHelper():
         wordcloud = WordCloud(background_color="white",
                               width=self.width,
                               height=self.height,
-                              font_path='/Users/lovesosoi/Documents/font_style/syst.otf',  # 字体设置 不写中文乱码
+                              font_path='D:\\space\\py_space\\spider\\spider\\qishus\\y245.ttf',  # 字体设置 不写中文乱码
                               margin=2,  # 边距
                               max_font_size=self.fontsize,  # 设置字体最大值
                               random_state=30,  # 设置有多少种随机生成状态，即有多少种配色方案
@@ -68,7 +69,7 @@ class CiyunHelperBg():
                               width=self.width,
                               height=self.height,
                               mask=mask,
-                              font_path='/Users/lovesosoi/Documents/font_style/syst.otf',  # 字体设置 不写中文乱码
+                              font_path='D:\\space\\py_space\\spider\\spider\\qishus\\y245.ttf',  # 字体设置 不写中文乱码
                               margin=2,  # 边距
                               max_font_size=self.fontsize,  # 设置字体最大值
                               random_state=30,  # 设置有多少种随机生成状态，即有多少种配色方案
