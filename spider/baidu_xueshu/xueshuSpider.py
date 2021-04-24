@@ -7,10 +7,6 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 
 from utils.MysqlUtil import MysqlUtil
-from utils.SpiderUtil import SpiderHtml
-
-from bs4 import BeautifulSoup as bs
-
 helper = None
 base = 'https://xueshu.baidu.com'
 default_url = "https://xueshu.baidu.com/s?wd="
@@ -35,10 +31,6 @@ def runSpider(url):
     time.sleep(1)  # 获取到网页数据
 
     runSpider2(url2)
-    # html = SpiderHtml(default_url).getHtmlWithReferer(base)
-    # print(html)
-    # ids=bs(html,'html.parser').find('id', id='top_hint')
-    # print(ids)
     pass
 
 
@@ -256,9 +248,7 @@ if __name__ == '__main__':
     # 读取数据库
     selectFromDb()
 
-    # 找到目标
     # runSpider()
-    # 详情获取
     # testurl = 'https://xueshu.baidu.com/usercenter/paper/show?paperid=c254b384f13089b07a6b9a0cab51354e&site=xueshu_se'
     # runSpider2(testurl)
 
