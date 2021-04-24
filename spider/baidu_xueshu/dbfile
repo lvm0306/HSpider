@@ -8,4 +8,20 @@ CREATE TABLE IF NOT EXISTS `xueshulist`(
 
 insert
 
- sql = "insert into xueshulist(xueshu_year,xueshu_cate,xueshu_name )values
+sql = "insert into xueshulist(xueshu_year,xueshu_cate,xueshu_name )values
+
+CREATE TABLE IF NOT EXISTS `xueshuinfo`(
+   `xueshu_infoid` INT UNSIGNED AUTO_INCREMENT,
+   `xueshu_id` VARCHAR(200) NOT NULL,
+   `xueshu_name` VARCHAR(2000) NOT NULL,
+   `xueshuinfo_author` VARCHAR(2000) NOT NULL,
+   `xueshuinfo_zhaiyao` VARCHAR(2000) NOT NULL,
+   `xueshuinfo_guanjianci` VARCHAR(2000) NOT NULL,
+   `xueshuinfo_doi` VARCHAR(2000) NOT NULL,
+   `xueshuinfo_beiyinliang` VARCHAR(2000) NOT NULL,
+   `xueshuinfo_year` VARCHAR(2000) NOT NULL,
+   `xueshuinfo_yanjiudian` VARCHAR(2000) NOT NULL,
+   PRIMARY KEY ( `xueshu_infoid` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+sql = "insert into xueshuinfo(xueshu_id,xueshu_name,xueshuinfo_author ,xueshuinfo_zhaiyao,xueshuinfo_guanjianci,xueshuinfo_doi,xueshuinfo_beiyinliang,xueshuinfo_year,xueshuinfo_yanjiudian)values('%s')
