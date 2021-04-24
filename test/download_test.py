@@ -2,6 +2,7 @@ from utils.DownloadUtils import DownloadBinaryFileWithProgressBar,DownloadBinary
 
 import requests
 
+from utils.SpiderUtil import SpiderHtml
 from utils.UserAgentSeed import argent, getHeaders,getHeadersWithReferer
 
 from urllib import request as req
@@ -23,5 +24,12 @@ txt_url='https://www.jjxs.la/e/DownSys/doaction.php?enews=DownSoft&classid=47&id
 # with open('1.txt','wb') as f :
 #     f.write(respone.content)
 # req.urlretrieve('https://i.meizitu.net/2018/11/21c01.jpg','1.jpg')
-DownloadBinaryFileWithProgressBar(aim_url=imageurl,save_url='1.jpg').load()
+imageurl = 'https://per.spdb.com.cn/bank_financing/financial_product/zxlc/201704/P020200617777637682661.pdf'
+#
+# DownloadBinaryFileWithProgressBar(aim_url=imageurl,save_url='1.pdf').load()
 # DownloadBinaryFile(aim_url=txt_url,save_url='2.txt').load()
+
+html=requests.get(imageurl)
+html=SpiderHtml(imageurl).getHtml()
+print(html)
+

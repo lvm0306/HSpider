@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS `xueshulist`(
+   `xueshu_id` INT UNSIGNED AUTO_INCREMENT,
+   `xueshu_year` VARCHAR(200) NOT NULL,
+   `xueshu_cate` VARCHAR(200) NOT NULL,
+   `xueshu_name` VARCHAR(2000) NOT NULL,
+   PRIMARY KEY ( `xueshu_id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert
+
+ sql = "insert into xueshulist(xueshu_year,xueshu_cate,xueshu_name )values

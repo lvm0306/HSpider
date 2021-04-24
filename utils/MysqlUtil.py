@@ -18,6 +18,9 @@ class MysqlUtil():
     def executeSql(self,sql):
         self.cursor.execute(sql)
         self.conn.commit()
+    def executeSqlmany(self,sql,many):
+        self.cursor.executemany(sql,many)
+        self.conn.commit()
 
     def close(self):
         self.cursor.close()
