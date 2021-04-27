@@ -24,14 +24,120 @@ def runSpider(url):
     driver.get(url)
     WebDriverWait(driver, 4)
     time.sleep(2)  # 获取到网页数据
-    div_1 = driver.find_elements_by_xpath('//*[@id="top_hint"]/div/div/div[1]/h3/a')
-    print(div_1[0].get_attribute('href'))
-    url2=div_1[0].get_attribute('href')
-    driver.quit()
-    time.sleep(1)  # 获取到网页数据
+    newurl=driver.current_url
+    print(newurl)
+    findresult=newurl.find('usercenter')
+    print(findresult)
+    if findresult == -1:
+        try:
+            div_1 = driver.find_elements_by_xpath('//*[@id="top_hint"]/div/div/div[1]/h3/a')
+            print(div_1[0].get_attribute('href'))
+            url2 = div_1[0].get_attribute('href')
+            driver.quit()
+            time.sleep(1)  # 获取到网页数据
+            runSpider2(url2)
+        except Exception as e:
+            print('error40')
+            print(e)
+            driver.quit()
+        pass
+    else:
+        cates = driver.find_elements_by_xpath('//*[@class="c_content"]//div')
+        # print(len(cates))
+        author = ''
+        zhaiyao = ''
+        guanjianci = ''
+        doi = ''
+        beiyinliang = ''
+        year = ''
+        yanjiudianinfo = ''
+        for i in cates:
+            lists = i.text.split('\n')
+            if lists[0] == '作者：':
+                # print('作者：')
+                # print(lists[1])
+                author = lists[1]
+            if lists[0] == '摘要：':
+                # print('摘要：')
+                # print(lists[1])
+                zhaiyao = lists[1]
 
-    runSpider2(url2)
-    pass
+            if lists[0] == '关键词：':
+                # print('关键词：')
+                guanjiancilist = []
+                a_s = i.find_elements_by_xpath('.//a')
+                for j in a_s:
+                    # print(j.text)
+                    guanjiancilist.append(j.text)
+                # print(lists[1])
+                guanjianci = ','.join(guanjiancilist)
+
+            if lists[0] == 'DOI：':
+                # print('DOI：')
+                # print(lists[1])
+                doi = lists[1]
+
+            if lists[0] == '被引量：':
+                # print('被引量：')
+                # print(lists[1])
+                beiyinliang = lists[1]
+
+            if lists[0] == '年份：':
+                # print('年份：')
+                # print(lists[1])
+                year = lists[1]
+
+        # 研究点分析
+        try:
+            yanjiudian = driver.find_element_by_xpath('//*[@id="dtl_r"]/div[3]/div')
+            lists = yanjiudian.text.split('\n')
+            yanjiudianlist = []
+            if lists[0] == '研究点分析':
+                # print('研究点分析：')
+                for i in lists[1:]:
+                    # print(i)
+                    yanjiudianlist.append(i)
+
+            yanjiudianinfo = ','.join(yanjiudianlist)
+        except Exception as e:
+            print(e)
+            pass
+
+        sql = "insert into xueshuinfo(xueshu_id," \
+              "xueshu_name," \
+              "xueshuinfo_author ," \
+              "xueshuinfo_zhaiyao," \
+              "xueshuinfo_guanjianci," \
+              "xueshuinfo_doi," \
+              "xueshuinfo_beiyinliang," \
+              "xueshuinfo_year," \
+              "xueshuinfo_yanjiudian)" \
+              "values('%s','%s','%s','%s','%s','%s','%s','%s','%s')" %(pymysql.escape_string(g_id),
+                                                                        pymysql.escape_string(g_name), \
+                                                                        pymysql.escape_string(author), \
+                                                                        pymysql.escape_string(zhaiyao), \
+                                                                        pymysql.escape_string(guanjianci), \
+                                                                        pymysql.escape_string(doi), \
+                                                                        pymysql.escape_string(beiyinliang), \
+                                                                        pymysql.escape_string(year), \
+                                                                        pymysql.escape_string(yanjiudianinfo))
+        # print('author'+str(author))
+        # print('zhaiyao'+str(zhaiyao))
+        # print('guanjianci'+str(guanjianci))
+        # print('doi'+str(doi))
+        # print('beiyinliang'+str(beiyinliang))
+        # print('year'+str(year))
+        # print('yanjiudianinfo'+str(yanjiudianinfo))
+        try:
+            mu.executeSql(sql)
+            print()
+        except Exception as e:
+            print(e)
+
+        driver.quit()
+        pass
+
+
 
 
 def runSpider2(url):
@@ -44,7 +150,6 @@ def runSpider2(url):
     time.sleep(2)  # 获取到网页数据
 
     # 全局获取
-    cates = driver.find_elements_by_xpath('//*[@id="dtl_l"]/div[1]/div[1]//div')
     cates = driver.find_elements_by_xpath('//*[@class="c_content"]//div')
     # print(len(cates))
     author=''
@@ -134,9 +239,15 @@ def runSpider2(url):
     # print('beiyinliang'+str(beiyinliang))
     # print('year'+str(year))
     # print('yanjiudianinfo'+str(yanjiudianinfo))
-    mu.executeSql(sql)
+    try:
+        mu.executeSql(sql)
+        driver.quit()
 
-    driver.quit()
+        # print()
+    except Exception as e:
+        driver.quit()
+        print(e)
+
 
     # auther=driver.find_element_by_xpath('//*[@id="dtl_l"]/div[1]/div[1]/div[2]/p[2]')
     # print(auther.text)
@@ -207,7 +318,7 @@ def useDb():
 
 
 def selectFromDb():
-    sql = 'select * from xueshulist'
+    sql = 'select * from xueshulist limit 292,50000'
     mu.executeSql(sql)
 
     temp = mu.cursor.fetchall()
@@ -219,10 +330,8 @@ def selectFromDb():
         g_id=str(i[0])
         global g_name
         g_name=str(i[3])
-        try:
-            runSpider(url)
-        except Exception as e:
-            runSpider2(url)
+
+        runSpider(url)
     # print(temp)
     pass
 
