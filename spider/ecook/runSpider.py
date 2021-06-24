@@ -9,7 +9,7 @@ import requests
 cate_url = 'https://www.ecook.cn/caipu/'
 base = 'https://www.ecook.cn/'
 helper = None
-cate_csv = 'cate.csv'
+cate_csv = 'cate2.csv'
 
 
 # 获取分类
