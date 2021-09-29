@@ -215,7 +215,7 @@ def simple_reply(msg):
                     except Exception as e:
                         print(e)
                     cishu+=1
-                    itchat.send_msg('当前时间为' + nowTime1 + '  ' + nowTime2 + '\n晚安小婧婧，做个好梦' , msg['FromUserName'])
+                    itchat.send_msg('当前时间为' + nowTime1 + '  ' + nowTime2 + '\n晚安，做个好梦' , msg['FromUserName'])
                     temp = []
                     temp.append(nowTime1)
                     temp.append(nowTime2)
@@ -335,7 +335,7 @@ def simple_reply(msg):
 # for friend in friendList:
 #     print(friend)
 
-itchat.auto_login(hotReload=True)
+itchat.auto_login()
 itchat.run()
 
 # from utils.SpiderHelper import *
