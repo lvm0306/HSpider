@@ -1,3 +1,6 @@
+from urllib import request
+
+import requests
 from PySide2.QtWidgets import QApplication, QMessageBox
 from PySide2.QtUiTools import QUiLoader
 
@@ -20,7 +23,6 @@ class Stats:
         self.ui.et_respone
         self.ui.et_url
         self.ui.table
-
 
     def show(self,show):
         QMessageBox.about(self.ui,
@@ -45,8 +47,16 @@ class Stats:
     def btsend(self):
         #发送逻辑
         if self.ui.et_url.toPlainText()!='':
-            self.show(self.ui.et_url.toPlainText())
+            print(self.ui.et_url.toPlainText())
+            # self.show(self.ui.et_url.toPlainText())
+            html = requests.get(self.ui.et_url.toPlainText())
+            print(html.content.__str__())
+            self.ui.et_respone.setPlainText(f''' {html.content.__str__()}''')
+
         pass
+    def requestget(self):
+        pass
+
 
 app = QApplication([])
 stats = Stats()
