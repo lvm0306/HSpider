@@ -6,7 +6,6 @@ import random
 import re
 import threading
 
-import pymysql
 from bs4 import BeautifulSoup
 import requests
 from contextlib import closing
