@@ -12,9 +12,9 @@ from itchat.content import PICTURE, TEXT, FRIENDS
 
 name = '@225948ac7647e958aef0a0aa647ef26bd98b414f2b9027f64348c053e059671f'
 myname = '@d0375b43062cc471856559312e3022b2'
-she_name = '❇婧哥哥💋'
-t_name = '小h'
-yao_csv = 'yao.csv'
+she_name = ''
+t_name = ''
+yao_csv = ''
 joke_page=1
 laoke=1
 
