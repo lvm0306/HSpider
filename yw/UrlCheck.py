@@ -6,7 +6,7 @@ import requests
 
 
 def run():
-    f = open("url.txt", "r")
+    f = open("config/url.txt", "r")
     result=[]
     for i in f.readlines():
         temp=[]
